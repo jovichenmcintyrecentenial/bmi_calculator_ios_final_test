@@ -57,7 +57,7 @@ class PersonalInfo: Object {
     //static function use to access data for list for todoTasks from realm database
     static func getPersonalData()->PersonalInfo?{
         let realm = try! Realm()
-        var personalInfObjects = realm.objects(PersonalInfo.self)
+        let personalInfObjects = realm.objects(PersonalInfo.self)
         if(personalInfObjects.count > 0){
             return personalInfObjects[0]
         }

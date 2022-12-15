@@ -24,11 +24,11 @@ class BMI {
       if bmi < 16 {
         return "Severe Thinness"
       } else if bmi <  17{
-        return "Moderate Thiness"
+        return "Moderate Thinness"
       } else if bmi < 18.5 {
         return "Mild Thiness"
       } else if bmi < 25.0 {
-        return "Normal weight"
+        return "Normal"
       } else if bmi < 30.0 {
         return "Overweight"
       } else if bmi < 35.0 {

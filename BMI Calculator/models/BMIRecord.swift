@@ -14,6 +14,7 @@ class BMIRecord: Object {
     @Persisted var weight: Double = 0
     @Persisted var bmi: Double = 0
     @Persisted var date: Date?
+    @Persisted var measurementSystem: Int?
     
     //function use to save this or self obj to realm database
     func create(){
@@ -40,7 +41,7 @@ class BMIRecord: Object {
      }
      
      //static function use to access data for list for todoTasks from realm database
-     static func getAllTodos()->Results<BMIRecord>{
+     static func getRecords()->Results<BMIRecord>{
          let realm = try! Realm()
          return realm.objects(BMIRecord.self)
      }

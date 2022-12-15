@@ -56,7 +56,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     
     func calculateBMI(){
         if(height != nil && weight != nil) {
-            var bmi = BMI.calculate(height: height!, weight: weight!, measurementSystem: measurementSystemUISegment.selectedSegmentIndex)
+            let bmi = BMI.calculate(height: height!, weight: weight!, measurementSystem: measurementSystemUISegment.selectedSegmentIndex)
             bmiLabel.text = "\(String(format: "%.1f", bmi)) BMI"
             bmiDescriptionLabel.text = BMI.getBMIDescription(bmi: bmi)
             
@@ -64,6 +64,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
             bmiRecord?.bmi = bmi
             bmiRecord?.weight = weight!
             bmiRecord?.height = height!
+            bmiRecord?.measurementSystem = measurementSystemUISegment.selectedSegmentIndex
             bmiRecord?.date = Date.now
         }
         else{
@@ -167,7 +168,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     
     func savePersonalInfo(){
         if(personalInfo == nil){
-            var personalInfo:PersonalInfo? = PersonalInfo()
+            let personalInfo:PersonalInfo? = PersonalInfo()
             personalInfo?.name = nameTextField.text!
             personalInfo?.age = Int(ageTextField.text!)!
             personalInfo?.gender = genderUISegment.selectedSegmentIndex

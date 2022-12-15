@@ -6,14 +6,27 @@
 //
 
 import UIKit
+import RealmSwift
 
 class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+    
+    var bmiRecords:Results<BMIRecord>? = nil
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return bmiRecords?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BMIHistoryViewCell
+        let bmiRecord:BMIRecord = bmiRecords![indexPath.row]
+        let dateformat = DateFormatter()
+        dateformat.dateFormat = "MMMM dd, YYYY"
+        cell.dateLabel.text = dateformat.string(from: bmiRecord.date!)
+        cell.bmiDescriptionLabel.text = BMI.getBMIDescription(bmi: bmiRecord.bmi)
+        let unitOfmeasuement = bmiRecord.measurementSystem==1 ? "kg" : "lb"
+        cell.heightWeightLabel.text = "Weight: \(bmiRecord.weight) \(unitOfmeasuement)"
+
+        cell.bmiLabel.text = "\(String(format: "%.1f", bmiRecord.bmi)) BMI"
 
         return cell
     }
@@ -22,6 +35,9 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        bmiRecords = BMIRecord.getRecords()
+    
+        tableView.reloadData()
 
         // Do any additional setup after loading the view.
     }
