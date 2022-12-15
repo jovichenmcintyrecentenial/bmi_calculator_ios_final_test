@@ -18,6 +18,7 @@
 		98C52C93294B078A00E4DAA6 /* BMITrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C52C92294B078A00E4DAA6 /* BMITrackingViewController.swift */; };
 		98C52C95294B081700E4DAA6 /* BMIHistoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C52C94294B081700E4DAA6 /* BMIHistoryViewCell.swift */; };
 		98C52C97294B216200E4DAA6 /* BMI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C52C96294B216200E4DAA6 /* BMI.swift */; };
+		98C52C99294B519F00E4DAA6 /* BMIBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C52C98294B519F00E4DAA6 /* BMIBaseViewController.swift */; };
 		FDA1B870A6E9994DD001F4FD /* Pods_BMI_Calculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B89F6D3A59904E972D6182 /* Pods_BMI_Calculator.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		98C52C92294B078A00E4DAA6 /* BMITrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMITrackingViewController.swift; sourceTree = "<group>"; };
 		98C52C94294B081700E4DAA6 /* BMIHistoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIHistoryViewCell.swift; sourceTree = "<group>"; };
 		98C52C96294B216200E4DAA6 /* BMI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMI.swift; sourceTree = "<group>"; };
+		98C52C98294B519F00E4DAA6 /* BMIBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIBaseViewController.swift; sourceTree = "<group>"; };
 		99BA69B6A6CAF68E494CF209 /* Pods-BMI Calculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMI Calculator.release.xcconfig"; path = "Target Support Files/Pods-BMI Calculator/Pods-BMI Calculator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +93,7 @@
 				984C648F294956ED00EF11CD /* Info.plist */,
 				98C52C92294B078A00E4DAA6 /* BMITrackingViewController.swift */,
 				98C52C94294B081700E4DAA6 /* BMIHistoryViewCell.swift */,
+				98C52C98294B519F00E4DAA6 /* BMIBaseViewController.swift */,
 			);
 			path = "BMI Calculator";
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				984C649C294ADD1C00EF11CD /* PersonalInfo.swift in Sources */,
 				98C52C97294B216200E4DAA6 /* BMI.swift in Sources */,
 				98C52C93294B078A00E4DAA6 /* BMITrackingViewController.swift in Sources */,
+				98C52C99294B519F00E4DAA6 /* BMIBaseViewController.swift in Sources */,
 				98C52C95294B081700E4DAA6 /* BMIHistoryViewCell.swift in Sources */,
 				984C6484294956EC00EF11CD /* SceneDelegate.swift in Sources */,
 			);

@@ -35,7 +35,7 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        bmiRecords = BMIRecord.getRecords()
+        bmiRecords = BMIRecord.getRecords().sorted(byKeyPath: "date", ascending: false)
     
         tableView.reloadData()
 
