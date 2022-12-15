@@ -25,6 +25,10 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
 
         // Do any additional setup after loading the view.
     }
+    // row height
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 81
+    }
     
 
     /*

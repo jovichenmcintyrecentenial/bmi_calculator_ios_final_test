@@ -186,6 +186,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="onHeightChanged:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="bu1-fe-PM3"/>
+                                                        </connections>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYo-YW-ksV">
                                                         <rect key="frame" x="0.0" y="63.999999999999943" width="154.66666666666666" height="1"/>
@@ -234,6 +237,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="onWeightChanged:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="XBS-D3-ie0"/>
+                                                        </connections>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ibm-Cz-h1A">
                                                         <rect key="frame" x="0.0" y="63.999999999999943" width="154.33333333333334" height="1"/>
@@ -336,8 +342,10 @@
                         <outlet property="ageTextField" destination="geX-2q-8gq" id="3rr-wp-Zn0"/>
                         <outlet property="bmiDescriptionLabel" destination="Pwo-v5-KL2" id="tZg-YV-yV8"/>
                         <outlet property="bmiLabel" destination="0Fc-X2-0B5" id="oqK-id-hqI"/>
+                        <outlet property="genderUISegment" destination="zW1-XB-qH9" id="vEP-SP-4fv"/>
                         <outlet property="heightLabel" destination="9oG-zi-zUp" id="To4-kq-Ofs"/>
                         <outlet property="heightTextField" destination="uaZ-r9-fyZ" id="Hkp-2S-gTn"/>
+                        <outlet property="measurementSystemUISegment" destination="kWl-vM-pym" id="4fw-8Q-AJR"/>
                         <outlet property="nameTextField" destination="cJX-cV-25P" id="Mdd-P1-WcI"/>
                         <outlet property="weightTextField" destination="8Ay-1y-Q47" id="M8R-g5-zGy"/>
                         <outlet property="wieghtlabel" destination="fl3-1A-IU3" id="XQB-Rk-K1l"/>
@@ -359,37 +367,37 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nDD-W6-j77">
                                 <rect key="frame" x="0.0" y="91" width="390" height="753"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="mkV-Al-Jcp">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="mkV-Al-Jcp">
                                         <rect key="frame" x="32" y="60" width="326" height="593"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="68" id="4BI-hu-gDN" customClass="BMIHistoryViewCell" customModule="BMI_Calculator" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="50" width="326" height="68"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="70" id="4BI-hu-gDN" customClass="BMIHistoryViewCell" customModule="BMI_Calculator" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="50" width="326" height="70"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4BI-hu-gDN" id="dGa-Ra-x39">
-                                                    <rect key="frame" x="0.0" y="0.0" width="326" height="68"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="326" height="70"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Height: 100 in Weight: 200 lb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHF-6m-OaO">
-                                                            <rect key="frame" x="0.0" y="13" width="199" height="18"/>
+                                                            <rect key="frame" x="0.0" y="14" width="199" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Normal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEY-wi-rdS">
-                                                            <rect key="frame" x="285" y="37.666666666666664" width="41" height="14.333333333333336"/>
+                                                            <rect key="frame" x="285" y="38.666666666666664" width="41" height="14.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="October 20, 2022" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7l-u7-sTI">
-                                                            <rect key="frame" x="0.0" y="37" width="101" height="15"/>
+                                                            <rect key="frame" x="0.0" y="38" width="101" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24 BMI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="77V-ym-eOm">
-                                                            <rect key="frame" x="269" y="11.666666666666664" width="57" height="21"/>
+                                                            <rect key="frame" x="269" y="12.666666666666664" width="57" height="21"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -408,6 +416,7 @@
                                                         <constraint firstItem="I7l-u7-sTI" firstAttribute="top" secondItem="DHF-6m-OaO" secondAttribute="bottom" constant="6" id="sb9-TV-fkT"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <connections>
                                                     <outlet property="bmiDescriptionLabel" destination="aEY-wi-rdS" id="eMv-LR-vVP"/>
                                                     <outlet property="bmiLabel" destination="77V-ym-eOm" id="P2r-T4-G9P"/>

@@ -16,9 +16,12 @@ struct Gender{
 }
 class PersonalInfo: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var name: String?
+    @Persisted var age: Int?
     @Persisted var height: Double?
     @Persisted var weight: Double?
-    @Persisted var gender: String?
+    @Persisted var gender: Int?
+    @Persisted var measurementSystem: Int?
     @Persisted var date: Date?
     
     //function use to save this or self obj to realm database
@@ -44,4 +47,14 @@ class PersonalInfo: Object {
              realm.delete(self)
          }
      }
+    
+    //static function use to access data for list for todoTasks from realm database
+    static func getPersonalData()->PersonalInfo?{
+        let realm = try! Realm()
+        var personalInfObjects = realm.objects(PersonalInfo.self)
+        for personalInfo in personalInfObjects {
+            return personalInfo
+        }
+        return nil
+    }
 }
