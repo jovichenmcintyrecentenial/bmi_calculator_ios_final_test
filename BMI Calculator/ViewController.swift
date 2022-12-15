@@ -9,11 +9,27 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
+    @IBOutlet weak var wieghtlabel: UILabel!
+    @IBOutlet weak var heightLabel: UILabel!
+    @IBOutlet weak var bmiLabel: UILabel!
+    @IBOutlet weak var bmiDescriptionLabel: UILabel!
+    @IBOutlet weak var ageTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var weightTextField: UITextField!
+    @IBOutlet weak var heightTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func genderValueChanged(_ sender: UISegmentedControl) {
+    }
+    
+    @IBAction func measurementSystemValueChanged(_ sender: UISegmentedControl) {
+    }
+    
     func getBMIDescription(bmi:Double) -> String {
         
         // Determine the BMI category based on the calculated BMI
@@ -36,6 +52,10 @@ class ViewController: UIViewController {
       }
     }
    
-
+    @IBAction func doneAction(_ sender: Any) {
+    }
+    @IBAction func resetAction(_ sender: Any) {
+    }
+    
 }
 

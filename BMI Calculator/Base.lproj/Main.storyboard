@@ -25,6 +25,9 @@
                                             <segment title="Imperical"/>
                                             <segment title="Metric units"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="measurementSystemValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="YZP-XX-CCo"/>
+                                        </connections>
                                     </segmentedControl>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VV5-QH-atM">
                                         <rect key="frame" x="32" y="32" width="326" height="65"/>
@@ -141,6 +144,9 @@
                                             <segment title="Female"/>
                                             <segment title="Other"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="genderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="jzD-Af-Mbd"/>
+                                        </connections>
                                     </segmentedControl>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="qkZ-zK-xWR">
                                         <rect key="frame" x="51" y="670.66666666666663" width="288" height="50.333333333333371"/>
@@ -149,6 +155,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="50.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Reset"/>
+                                                <connections>
+                                                    <action selector="resetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uht-q6-3ZI"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbz-Ww-Ujk">
                                                 <rect key="frame" x="168" y="0.0" width="120" height="50.333333333333336"/>
@@ -158,6 +167,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Done" buttonSize="large"/>
                                                 <connections>
+                                                    <action selector="doneAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="asQ-8A-aKX"/>
                                                     <segue destination="qML-og-iwK" kind="show" id="hyG-wb-0Jb"/>
                                                 </connections>
                                             </button>
@@ -323,6 +333,14 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="hge-Ab-G7I"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="ageTextField" destination="geX-2q-8gq" id="3rr-wp-Zn0"/>
+                        <outlet property="bmiDescriptionLabel" destination="Pwo-v5-KL2" id="tZg-YV-yV8"/>
+                        <outlet property="bmiLabel" destination="0Fc-X2-0B5" id="oqK-id-hqI"/>
+                        <outlet property="heightLabel" destination="9oG-zi-zUp" id="To4-kq-Ofs"/>
+                        <outlet property="heightTextField" destination="uaZ-r9-fyZ" id="Hkp-2S-gTn"/>
+                        <outlet property="nameTextField" destination="cJX-cV-25P" id="Mdd-P1-WcI"/>
+                        <outlet property="weightTextField" destination="8Ay-1y-Q47" id="M8R-g5-zGy"/>
+                        <outlet property="wieghtlabel" destination="fl3-1A-IU3" id="XQB-Rk-K1l"/>
                         <segue destination="qML-og-iwK" kind="show" id="Cbj-zs-B3B"/>
                     </connections>
                 </viewController>
@@ -333,7 +351,7 @@
         <!-- BMI Tracking-->
         <scene sceneID="1G5-NW-FQo">
             <objects>
-                <viewController id="qML-og-iwK" sceneMemberID="viewController">
+                <viewController id="qML-og-iwK" customClass="BMITrackingViewController" customModule="BMI_Calculator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PcK-8J-2Ib">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -345,7 +363,7 @@
                                         <rect key="frame" x="32" y="60" width="326" height="593"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="68" id="4BI-hu-gDN">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="68" id="4BI-hu-gDN" customClass="BMIHistoryViewCell" customModule="BMI_Calculator" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="50" width="326" height="68"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4BI-hu-gDN" id="dGa-Ra-x39">
@@ -359,7 +377,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Normal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEY-wi-rdS">
-                                                            <rect key="frame" x="285" y="37.666666666666664" width="41" height="15"/>
+                                                            <rect key="frame" x="285" y="37.666666666666664" width="41" height="14.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -390,8 +408,18 @@
                                                         <constraint firstItem="I7l-u7-sTI" firstAttribute="top" secondItem="DHF-6m-OaO" secondAttribute="bottom" constant="6" id="sb9-TV-fkT"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="bmiDescriptionLabel" destination="aEY-wi-rdS" id="eMv-LR-vVP"/>
+                                                    <outlet property="bmiLabel" destination="77V-ym-eOm" id="P2r-T4-G9P"/>
+                                                    <outlet property="dateLabel" destination="I7l-u7-sTI" id="9TP-eh-9uC"/>
+                                                    <outlet property="heightWeightLabel" destination="DHF-6m-OaO" id="Zv2-Ff-YEY"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="qML-og-iwK" id="VrQ-Kd-Q0D"/>
+                                            <outlet property="delegate" destination="qML-og-iwK" id="SsT-aU-kfm"/>
+                                        </connections>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BMI History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YwS-l7-WSm">
                                         <rect key="frame" x="32" y="24" width="326" height="21"/>
@@ -424,6 +452,9 @@
                     <navigationItem key="navigationItem" title=" BMI Tracking" id="TH1-bW-f4E">
                         <barButtonItem key="backBarButtonItem" title=" " id="vEY-jY-dzR"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="mkV-Al-Jcp" id="Q2E-aQ-cHV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4LF-UV-9B3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

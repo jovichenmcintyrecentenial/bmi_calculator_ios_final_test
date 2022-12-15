@@ -20,4 +20,28 @@ class PersonalInfo: Object {
     @Persisted var weight: Double?
     @Persisted var gender: String?
     @Persisted var date: Date?
+    
+    //function use to save this or self obj to realm database
+    func create(){
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(self)
+        }
+     }
+     
+     //function update obj in realm database
+     func update(){
+         let realm = try! Realm()
+         try! realm.write {
+             realm.add(self, update: .modified)
+         }
+     }
+     
+     //function use to delete obj from realm database
+     func delete(){
+         let realm = try! Realm()
+         try! realm.write {
+             realm.delete(self)
+         }
+     }
 }
