@@ -168,7 +168,6 @@
                                                 <buttonConfiguration key="configuration" style="filled" title="Done" buttonSize="large"/>
                                                 <connections>
                                                     <action selector="doneAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="asQ-8A-aKX"/>
-                                                    <segue destination="qML-og-iwK" kind="show" id="hyG-wb-0Jb"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -179,7 +178,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5t-8a-wfb">
                                                 <rect key="frame" x="0.0" y="0.0" width="154.66666666666666" height="65"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter height here" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uaZ-r9-fyZ">
+                                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter height here" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uaZ-r9-fyZ">
                                                         <rect key="frame" x="0.0" y="29" width="154.66666666666666" height="34"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="34" id="scF-c3-Sgq"/>
@@ -230,7 +229,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FIR-zC-hpu">
                                                 <rect key="frame" x="171.66666666666663" y="0.0" width="154.33333333333337" height="65"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter age here" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8Ay-1y-Q47">
+                                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter age here" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8Ay-1y-Q47">
                                                         <rect key="frame" x="0.0" y="29" width="154.33333333333334" height="34"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="34" id="AVk-s7-tfB"/>
@@ -344,12 +343,11 @@
                         <outlet property="bmiLabel" destination="0Fc-X2-0B5" id="oqK-id-hqI"/>
                         <outlet property="genderUISegment" destination="zW1-XB-qH9" id="vEP-SP-4fv"/>
                         <outlet property="heightLabel" destination="9oG-zi-zUp" id="To4-kq-Ofs"/>
-                        <outlet property="heightTextField" destination="uaZ-r9-fyZ" id="Hkp-2S-gTn"/>
+                        <outlet property="heightTextField" destination="uaZ-r9-fyZ" id="bWV-tw-q25"/>
                         <outlet property="measurementSystemUISegment" destination="kWl-vM-pym" id="4fw-8Q-AJR"/>
                         <outlet property="nameTextField" destination="cJX-cV-25P" id="Mdd-P1-WcI"/>
                         <outlet property="weightTextField" destination="8Ay-1y-Q47" id="M8R-g5-zGy"/>
                         <outlet property="wieghtlabel" destination="fl3-1A-IU3" id="XQB-Rk-K1l"/>
-                        <segue destination="qML-og-iwK" kind="show" id="Cbj-zs-B3B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -365,10 +363,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nDD-W6-j77">
-                                <rect key="frame" x="0.0" y="91" width="390" height="753"/>
+                                <rect key="frame" x="0.0" y="47" width="390" height="797"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="mkV-Al-Jcp">
-                                        <rect key="frame" x="32" y="60" width="326" height="593"/>
+                                        <rect key="frame" x="32" y="60" width="326" height="637"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="70" id="4BI-hu-gDN" customClass="BMIHistoryViewCell" customModule="BMI_Calculator" customModuleProvider="target">
@@ -497,9 +495,6 @@
             <point key="canvasLocation" x="101.53846153846153" y="3.5545023696682461"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Cbj-zs-B3B"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

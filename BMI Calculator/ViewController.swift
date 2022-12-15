@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import NotificationBannerSwift
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UITextFieldDelegate {
 
     var personalInfo:PersonalInfo?
+    var height:Double?
+    var weight:Double?
     
     @IBOutlet weak var measurementSystemUISegment: UISegmentedControl!
 
@@ -25,15 +28,40 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
+        heightTextField.delegate = self
+        weightTextField.delegate = self
+
+        
+    }
+    
+
+
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if(textField.tag == 1){
+            height = Double(textField.text!) ?? nil
+        }
+        if(textField.tag == 2){
+            weight = Double(textField.text!) ?? nil
+        }
+        calculateBMI()
+
     }
     
     @IBAction func onHeightChanged(_ sender: Any) {
     }
     
+    func calculateBMI(){
+        if(height != nil && weight != nil) {
+            var bmi = BMI.calculate(height: height!, weight: weight!, measurementSystem: measurementSystemUISegment.selectedSegmentIndex)
+            bmiLabel.text = "\(bmi)"
+            bmiDescriptionLabel.text = BMI.getBMIDescription(bmi: bmi)
+            
+        }
+    }
+    
     @IBAction func onWeightChanged(_ sender: Any) {
-        
+       
     }
     
     func getUserData(){
@@ -62,31 +90,56 @@ class ViewController: UIViewController {
     }
     
     @IBAction func measurementSystemValueChanged(_ sender: UISegmentedControl) {
+        heightTextField.text = ""
+        weightTextField.text = ""
+        weight = nil
+        height = nil
+        calculateBMI()
+
     }
     
-    func getBMIDescription(bmi:Double) -> String {
+
+   func isDataValid()->Bool{
+        var error:String? = nil
         
-        // Determine the BMI category based on the calculated BMI
-      if bmi < 16 {
-        return "Severe Thinness"
-      } else if bmi <  17{
-        return "Moderate Thiness"
-      } else if bmi < 18.5 {
-        return "Mild Thiness"
-      } else if bmi < 25.0 {
-        return "Normal weight"
-      } else if bmi < 30.0 {
-        return "Overweight"
-      } else if bmi < 35.0 {
-        return "Obese Class I"
-      } else if bmi < 40.0 {
-        return "Obese Class II"
-      } else {
-        return "Obese Class III"
-      }
+        if(nameTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            error = "Please enter a name"
+        }
+
+       else if(ageTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+           error = "Please enter a age"
+       }
+       else if ageTextField.text!.rangeOfCharacter(from: .decimalDigits) == nil {
+           error = "Please enter a number for your age"
+       }
+       else if(heightTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+           error = "Please enter a height"
+       }
+       else if heightTextField.text!.rangeOfCharacter(from: .decimalDigits) == nil {
+           error = "Please enter a number for your height"
+       }
+       else if(weightTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+           error = "Please enter a weight"
+       }
+       else if weightTextField.text!.rangeOfCharacter(from: .decimalDigits) == nil {
+           error = "Please enter a number for your weight"
+       }
+       
+        
+        //display banner showing user error for required field
+        if(error != nil){
+            let banner = NotificationBanner(title: title, subtitle: error!, style: .danger)
+            banner.show()
+            return false
+        }
+        
+        return true
     }
    
     @IBAction func doneAction(_ sender: Any) {
+        if(isDataValid()){
+            
+        }
     }
     @IBAction func resetAction(_ sender: Any) {
     }
