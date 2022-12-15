@@ -29,7 +29,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VV5-QH-atM">
                                         <rect key="frame" x="32" y="32" width="326" height="65"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter full name here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cJX-cV-25P">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter full name here" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cJX-cV-25P">
                                                 <rect key="frame" x="0.0" y="29" width="326" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="rYD-BW-1hJ"/>
@@ -45,7 +45,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kgo-KV-4Lx">
-                                                <rect key="frame" x="0.0" y="8" width="45" height="21"/>
+                                                <rect key="frame" x="0.0" y="8" width="326" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -64,6 +64,7 @@
                                             <constraint firstItem="cJX-cV-25P" firstAttribute="leading" secondItem="VV5-QH-atM" secondAttribute="leading" id="I40-sE-hsU"/>
                                             <constraint firstItem="N7l-jd-hTn" firstAttribute="leading" secondItem="VV5-QH-atM" secondAttribute="leading" id="N4D-nW-scU"/>
                                             <constraint firstItem="cJX-cV-25P" firstAttribute="leading" secondItem="VV5-QH-atM" secondAttribute="leading" id="O7A-bd-N2z"/>
+                                            <constraint firstAttribute="trailing" secondItem="Kgo-KV-4Lx" secondAttribute="trailing" id="OGk-zg-4by"/>
                                             <constraint firstAttribute="trailing" secondItem="N7l-jd-hTn" secondAttribute="trailing" id="QD7-qv-ucv"/>
                                             <constraint firstItem="cJX-cV-25P" firstAttribute="top" secondItem="Kgo-KV-4Lx" secondAttribute="bottom" id="S6h-fT-huU"/>
                                             <constraint firstAttribute="bottom" secondItem="N7l-jd-hTn" secondAttribute="bottom" id="Teg-mW-5KI"/>
@@ -76,7 +77,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsq-YX-o2v">
                                         <rect key="frame" x="32" y="118" width="326" height="65"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter age here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="geX-2q-8gq">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter age here" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="geX-2q-8gq">
                                                 <rect key="frame" x="0.0" y="29" width="326" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="8Vr-hg-w49"/>
@@ -92,7 +93,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1G-zx-1Mb">
-                                                <rect key="frame" x="0.0" y="8" width="30" height="21"/>
+                                                <rect key="frame" x="0.0" y="8" width="326" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -117,6 +118,7 @@
                                             <constraint firstAttribute="height" constant="65" id="dT0-J2-oRg"/>
                                             <constraint firstAttribute="bottom" secondItem="j7h-Av-zg3" secondAttribute="bottom" id="f9i-tK-a5d"/>
                                             <constraint firstItem="geX-2q-8gq" firstAttribute="leading" secondItem="qsq-YX-o2v" secondAttribute="leading" id="fTQ-C9-qfh"/>
+                                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="R1G-zx-1Mb" secondAttribute="trailing" id="rGm-aa-eM5"/>
                                             <constraint firstItem="j7h-Av-zg3" firstAttribute="top" secondItem="geX-2q-8gq" secondAttribute="bottom" constant="1" id="v9P-vv-Nn2"/>
                                         </constraints>
                                     </view>
@@ -151,7 +153,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbz-Ww-Ujk">
                                                 <rect key="frame" x="168" y="0.0" width="120" height="50.333333333333336"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="120" id="1dq-U8-r4N"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="1dq-U8-r4N"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Done" buttonSize="large"/>
@@ -163,17 +165,17 @@
                                 <constraints>
                                     <constraint firstItem="qsq-YX-o2v" firstAttribute="leading" secondItem="l9o-CZ-TU2" secondAttribute="leading" constant="32" id="2xL-Cu-8yw"/>
                                     <constraint firstItem="zW1-XB-qH9" firstAttribute="leading" secondItem="l9o-CZ-TU2" secondAttribute="leading" constant="32" id="32E-kl-7Xg"/>
-                                    <constraint firstAttribute="trailing" secondItem="kWl-vM-pym" secondAttribute="trailing" constant="32" id="3Bj-Zs-rzU"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="kWl-vM-pym" secondAttribute="trailing" constant="32" id="3Bj-Zs-rzU"/>
                                     <constraint firstItem="kWl-vM-pym" firstAttribute="top" secondItem="kPt-9T-oZj" secondAttribute="bottom" constant="14" id="3kX-cy-w4M"/>
                                     <constraint firstItem="qkZ-zK-xWR" firstAttribute="leading" secondItem="l9o-CZ-TU2" secondAttribute="leading" constant="51" id="7Xy-gb-Opq"/>
                                     <constraint firstItem="VV5-QH-atM" firstAttribute="top" secondItem="l9o-CZ-TU2" secondAttribute="top" constant="32" id="BpP-Iw-RYN"/>
                                     <constraint firstItem="Vgr-2h-M82" firstAttribute="leading" secondItem="l9o-CZ-TU2" secondAttribute="leading" constant="32" id="EBq-Yv-IID"/>
                                     <constraint firstItem="kPt-9T-oZj" firstAttribute="top" secondItem="zW1-XB-qH9" secondAttribute="bottom" constant="20" id="Efc-N8-mtQ"/>
                                     <constraint firstAttribute="trailing" secondItem="qkZ-zK-xWR" secondAttribute="trailing" constant="51" id="HMe-eU-pD6"/>
-                                    <constraint firstAttribute="trailing" secondItem="zW1-XB-qH9" secondAttribute="trailing" constant="32" id="RuP-A3-CwP"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="zW1-XB-qH9" secondAttribute="trailing" constant="32" id="RuP-A3-CwP"/>
                                     <constraint firstAttribute="bottom" secondItem="qkZ-zK-xWR" secondAttribute="bottom" constant="32" id="SHp-ul-A1C"/>
-                                    <constraint firstAttribute="trailing" secondItem="kPt-9T-oZj" secondAttribute="trailing" constant="32" id="W3e-vF-nvW"/>
-                                    <constraint firstAttribute="trailing" secondItem="Vgr-2h-M82" secondAttribute="trailing" constant="32" id="X41-sN-EKy"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="kPt-9T-oZj" secondAttribute="trailing" constant="32" id="W3e-vF-nvW"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Vgr-2h-M82" secondAttribute="trailing" constant="32" id="X41-sN-EKy"/>
                                     <constraint firstItem="Vgr-2h-M82" firstAttribute="top" secondItem="qsq-YX-o2v" secondAttribute="bottom" constant="20" id="gYE-Dj-STI"/>
                                     <constraint firstItem="zW1-XB-qH9" firstAttribute="top" secondItem="Vgr-2h-M82" secondAttribute="bottom" constant="14" id="hhm-dy-xdO"/>
                                     <constraint firstItem="VV5-QH-atM" firstAttribute="leading" secondItem="l9o-CZ-TU2" secondAttribute="leading" constant="32" id="iRf-Hv-nbr"/>
