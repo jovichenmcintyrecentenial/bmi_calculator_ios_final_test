@@ -27,9 +27,15 @@ class PersonalInfo: Object {
     //function use to save this or self obj to realm database
     func create(){
         let realm = try! Realm()
-        try! realm.write {
+        
+        do {
+          try realm.write {
             realm.add(self)
+          }
+        } catch {
+            print("errorerror")
         }
+     
      }
      
      //function update obj in realm database
@@ -52,9 +58,10 @@ class PersonalInfo: Object {
     static func getPersonalData()->PersonalInfo?{
         let realm = try! Realm()
         var personalInfObjects = realm.objects(PersonalInfo.self)
-        for personalInfo in personalInfObjects {
-            return personalInfo
+        if(personalInfObjects.count > 0){
+            return personalInfObjects[0]
         }
         return nil
+        
     }
 }

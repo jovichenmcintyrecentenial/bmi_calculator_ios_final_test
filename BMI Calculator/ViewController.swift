@@ -7,15 +7,17 @@
 
 import UIKit
 import NotificationBannerSwift
+import RealmSwift
 
 class ViewController: UIViewController,UITextFieldDelegate {
-
+    
     var personalInfo:PersonalInfo?
     var height:Double?
     var weight:Double?
+    var bmiRecord:BMIRecord? = nil
     
     @IBOutlet weak var measurementSystemUISegment: UISegmentedControl!
-
+    
     @IBOutlet weak var genderUISegment: UISegmentedControl!
     @IBOutlet weak var wieghtlabel: UILabel!
     @IBOutlet weak var heightLabel: UILabel!
@@ -31,12 +33,13 @@ class ViewController: UIViewController,UITextFieldDelegate {
         
         heightTextField.delegate = self
         weightTextField.delegate = self
-
+        updateDisplay()
+        getUserData()
         
     }
     
-
-
+    
+    
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if(textField.tag == 1){
             height = Double(textField.text!) ?? nil
@@ -45,7 +48,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
             weight = Double(textField.text!) ?? nil
         }
         calculateBMI()
-
+        
     }
     
     @IBAction func onHeightChanged(_ sender: Any) {
@@ -54,14 +57,22 @@ class ViewController: UIViewController,UITextFieldDelegate {
     func calculateBMI(){
         if(height != nil && weight != nil) {
             var bmi = BMI.calculate(height: height!, weight: weight!, measurementSystem: measurementSystemUISegment.selectedSegmentIndex)
-            bmiLabel.text = "\(bmi)"
+            bmiLabel.text = "\(String(format: "%.1f", bmi)) BMI"
             bmiDescriptionLabel.text = BMI.getBMIDescription(bmi: bmi)
             
+            bmiRecord = BMIRecord()
+            bmiRecord?.bmi = bmi
+            bmiRecord?.weight = weight!
+            bmiRecord?.height = height!
+            bmiRecord?.date = Date.now
+        }
+        else{
+            bmiRecord = nil
         }
     }
     
     @IBAction func onWeightChanged(_ sender: Any) {
-       
+        
     }
     
     func getUserData(){
@@ -76,55 +87,73 @@ class ViewController: UIViewController,UITextFieldDelegate {
         ageTextField.text = "\(personalInfo!.age!)"
         genderUISegment.selectedSegmentIndex = personalInfo!.gender!
         measurementSystemUISegment.selectedSegmentIndex = personalInfo!.measurementSystem!
-        heightLabel.text = "\(personalInfo!.height!)"
+        heightTextField.text = "\(personalInfo!.height!)"
         weightTextField.text = "\(personalInfo!.weight!)"
+        weight = Double(weightTextField.text!) ?? nil
+        height = Double(heightTextField.text!) ?? nil
+
+        calculateBMI()
         
-        updateBMI()
     }
     
-    func updateBMI(){
-        
-    }
+    
+    
 
+    
     @IBAction func genderValueChanged(_ sender: UISegmentedControl) {
     }
     
     @IBAction func measurementSystemValueChanged(_ sender: UISegmentedControl) {
+        updateDisplay()
+        calculateBMI()
+        
+    }
+    
+    func updateDisplay(){
         heightTextField.text = ""
         weightTextField.text = ""
         weight = nil
         height = nil
-        calculateBMI()
-
+        bmiRecord = nil
+        bmiLabel.text = ""
+        bmiDescriptionLabel.text = ""
+        if(measurementSystemUISegment.selectedSegmentIndex == 1){
+            heightLabel.text = "Height (meters)"
+            wieghtlabel.text = "Weight (kilograms)"
+        }
+        else{
+            heightLabel.text = "Height (inches)"
+            wieghtlabel.text = "Weight (pounds)"
+        }
     }
     
-
-   func isDataValid()->Bool{
+    
+    func isDataValid()->Bool{
         var error:String? = nil
         
         if(nameTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty){
             error = "Please enter a name"
         }
-
-       else if(ageTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty){
-           error = "Please enter a age"
-       }
-       else if ageTextField.text!.rangeOfCharacter(from: .decimalDigits) == nil {
-           error = "Please enter a number for your age"
-       }
-       else if(heightTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty){
-           error = "Please enter a height"
-       }
-       else if heightTextField.text!.rangeOfCharacter(from: .decimalDigits) == nil {
-           error = "Please enter a number for your height"
-       }
-       else if(weightTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty){
-           error = "Please enter a weight"
-       }
-       else if weightTextField.text!.rangeOfCharacter(from: .decimalDigits) == nil {
-           error = "Please enter a number for your weight"
-       }
-       
+        
+        else if(ageTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            error = "Please enter a age"
+        }
+        else if ageTextField.text!.rangeOfCharacter(from: .decimalDigits) == nil {
+            error = "Please enter a number for your age"
+        }
+        else if(heightTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            error = "Please enter a height"
+        }
+        else if heightTextField.text!.rangeOfCharacter(from: .decimalDigits) == nil {
+            error = "Please enter a number for your height"
+        }
+        else if(weightTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            error = "Please enter a weight"
+        }
+        else if weightTextField.text!.rangeOfCharacter(from: .decimalDigits) == nil {
+            error = "Please enter a number for your weight"
+        }
+        
         
         //display banner showing user error for required field
         if(error != nil){
@@ -135,9 +164,45 @@ class ViewController: UIViewController,UITextFieldDelegate {
         
         return true
     }
+    
+    func savePersonalInfo(){
+        if(personalInfo == nil){
+            var personalInfo:PersonalInfo? = PersonalInfo()
+            personalInfo?.name = nameTextField.text!
+            personalInfo?.age = Int(ageTextField.text!)!
+            personalInfo?.gender = genderUISegment.selectedSegmentIndex
+            personalInfo?.measurementSystem = measurementSystemUISegment.selectedSegmentIndex
+            personalInfo?.height = Double(heightTextField.text!)!
+            personalInfo?.weight = Double(weightTextField.text!)!
+            personalInfo?.create()
+            
+        }
+        else{
+            let realm = try! Realm()
+            try! realm.write {
+                personalInfo?.name = nameTextField.text!
+                personalInfo?.age = Int(ageTextField.text!)!
+                personalInfo?.gender = genderUISegment.selectedSegmentIndex
+                personalInfo?.measurementSystem = measurementSystemUISegment.selectedSegmentIndex
+                personalInfo?.height = Double(heightTextField.text!)!
+                personalInfo?.weight = Double(weightTextField.text!)!
+            }
+        }
+    }
+    
+    func saveBMIRecord(){
+        if(bmiRecord != nil){
+            bmiRecord?.create()
+            bmiRecord = nil
+        }
+    }
    
     @IBAction func doneAction(_ sender: Any) {
         if(isDataValid()){
+          
+            savePersonalInfo()
+            saveBMIRecord()
+            performSegue(withIdentifier: "tracker", sender: nil)
             
         }
     }

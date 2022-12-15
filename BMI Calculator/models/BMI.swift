@@ -11,7 +11,7 @@ class BMI {
     static func calculate(height:Double,weight:Double,measurementSystem:Int)->Double{
         
 
-        if(measurementSystem == 1){
+        if(measurementSystem == 0){
             return (weight*703)/(height*height)
         }
         

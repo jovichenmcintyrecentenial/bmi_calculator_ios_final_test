@@ -348,6 +348,7 @@
                         <outlet property="nameTextField" destination="cJX-cV-25P" id="Mdd-P1-WcI"/>
                         <outlet property="weightTextField" destination="8Ay-1y-Q47" id="M8R-g5-zGy"/>
                         <outlet property="wieghtlabel" destination="fl3-1A-IU3" id="XQB-Rk-K1l"/>
+                        <segue destination="qML-og-iwK" kind="show" identifier="tracker" id="vbp-Vp-M9f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -363,10 +364,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nDD-W6-j77">
-                                <rect key="frame" x="0.0" y="47" width="390" height="797"/>
+                                <rect key="frame" x="0.0" y="91" width="390" height="753"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="mkV-Al-Jcp">
-                                        <rect key="frame" x="32" y="60" width="326" height="637"/>
+                                        <rect key="frame" x="32" y="60" width="326" height="593"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="70" id="4BI-hu-gDN" customClass="BMIHistoryViewCell" customModule="BMI_Calculator" customModuleProvider="target">
