@@ -32,13 +32,23 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     
 
-    @IBOutlet weak var tableView: UITableView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        loadData()
+    }
+    
+    func loadData(){
         bmiRecords = BMIRecord.getRecords().sorted(byKeyPath: "date", ascending: false)
     
         tableView.reloadData()
-
+    }
+    
+    @IBOutlet weak var tableView: UITableView!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadData()
+        
+        let tabBar = UIApplication.shared.keyWindow?.rootViewController as? UITabBarController
+        tabBar!.selectedIndex = 1
         // Do any additional setup after loading the view.
     }
     // row height

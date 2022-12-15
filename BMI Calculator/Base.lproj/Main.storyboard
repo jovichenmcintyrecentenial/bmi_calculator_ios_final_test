@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rem-sJ-iFg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pwg-iz-z2s">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -148,30 +149,6 @@
                                             <action selector="genderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="jzD-Af-Mbd"/>
                                         </connections>
                                     </segmentedControl>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="qkZ-zK-xWR">
-                                        <rect key="frame" x="51" y="670.66666666666663" width="288" height="50.333333333333371"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofR-5D-EbA">
-                                                <rect key="frame" x="0.0" y="0.0" width="120" height="50.333333333333336"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Reset"/>
-                                                <connections>
-                                                    <action selector="resetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uht-q6-3ZI"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbz-Ww-Ujk">
-                                                <rect key="frame" x="168" y="0.0" width="120" height="50.333333333333336"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="1dq-U8-r4N"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Done" buttonSize="large"/>
-                                                <connections>
-                                                    <action selector="doneAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="asQ-8A-aKX"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="2WR-xK-shJ">
                                         <rect key="frame" x="32" y="369.66666666666669" width="326" height="65"/>
                                         <subviews>
@@ -291,6 +268,30 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="qkZ-zK-xWR">
+                                        <rect key="frame" x="51" y="598" width="288" height="50.333333333333371"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofR-5D-EbA">
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="50.333333333333336"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Reset"/>
+                                                <connections>
+                                                    <action selector="resetAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uht-q6-3ZI"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbz-Ww-Ujk">
+                                                <rect key="frame" x="168" y="0.0" width="120" height="50.333333333333336"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="1dq-U8-r4N"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Done" buttonSize="large"/>
+                                                <connections>
+                                                    <action selector="doneAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="asQ-8A-aKX"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -301,13 +302,13 @@
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="kWl-vM-pym" secondAttribute="trailing" constant="32" id="3Bj-Zs-rzU"/>
                                     <constraint firstItem="kWl-vM-pym" firstAttribute="top" secondItem="kPt-9T-oZj" secondAttribute="bottom" constant="14" id="3kX-cy-w4M"/>
                                     <constraint firstItem="qkZ-zK-xWR" firstAttribute="leading" secondItem="l9o-CZ-TU2" secondAttribute="leading" constant="51" id="7Xy-gb-Opq"/>
+                                    <constraint firstAttribute="bottom" secondItem="qkZ-zK-xWR" secondAttribute="bottom" constant="104.67" id="Abt-s5-ctA"/>
                                     <constraint firstItem="VV5-QH-atM" firstAttribute="top" secondItem="l9o-CZ-TU2" secondAttribute="top" constant="32" id="BpP-Iw-RYN"/>
                                     <constraint firstItem="Vgr-2h-M82" firstAttribute="leading" secondItem="l9o-CZ-TU2" secondAttribute="leading" constant="32" id="EBq-Yv-IID"/>
                                     <constraint firstItem="kPt-9T-oZj" firstAttribute="top" secondItem="zW1-XB-qH9" secondAttribute="bottom" constant="20" id="Efc-N8-mtQ"/>
                                     <constraint firstAttribute="trailing" secondItem="qkZ-zK-xWR" secondAttribute="trailing" constant="51" id="HMe-eU-pD6"/>
                                     <constraint firstItem="Pwo-v5-KL2" firstAttribute="centerX" secondItem="0Fc-X2-0B5" secondAttribute="centerX" id="Hpf-ln-V1s"/>
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="zW1-XB-qH9" secondAttribute="trailing" constant="32" id="RuP-A3-CwP"/>
-                                    <constraint firstAttribute="bottom" secondItem="qkZ-zK-xWR" secondAttribute="bottom" constant="32" id="SHp-ul-A1C"/>
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="kPt-9T-oZj" secondAttribute="trailing" constant="32" id="W3e-vF-nvW"/>
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Vgr-2h-M82" secondAttribute="trailing" constant="32" id="X41-sN-EKy"/>
                                     <constraint firstItem="2WR-xK-shJ" firstAttribute="top" secondItem="kWl-vM-pym" secondAttribute="bottom" constant="16" id="aKl-kl-NvG"/>
@@ -348,7 +349,6 @@
                         <outlet property="nameTextField" destination="cJX-cV-25P" id="Mdd-P1-WcI"/>
                         <outlet property="weightTextField" destination="8Ay-1y-Q47" id="M8R-g5-zGy"/>
                         <outlet property="wieghtlabel" destination="fl3-1A-IU3" id="XQB-Rk-K1l"/>
-                        <segue destination="qML-og-iwK" kind="show" identifier="tracker" id="vbp-Vp-M9f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -473,7 +473,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4LF-UV-9B3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1786" y="-6"/>
+            <point key="canvasLocation" x="3643.0769230769229" y="823.93364928909944"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="yam-cl-pBi">
@@ -692,10 +692,13 @@
             </objects>
             <point key="canvasLocation" x="2575" y="-6"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Personal Details-->
         <scene sceneID="vj6-v8-rhG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rem-sJ-iFg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Personal Details" selectedImage="person" catalog="system" id="fsb-gf-NVz">
+                        <imageReference key="image" image="person" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ANJ-He-U9f">
                         <rect key="frame" x="0.0" y="47" width="390" height="44"/>
@@ -717,13 +720,57 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uqq-o4-LoX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="101.53846153846153" y="3.5545023696682461"/>
+            <point key="canvasLocation" x="1950.7692307692307" y="867.29857819905214"/>
+        </scene>
+        <!--BMI History-->
+        <scene sceneID="411-AP-ytW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CYF-Mu-Z6M" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="BMI History" selectedImage="list.bullet.clipboard" catalog="system" id="gma-vy-GFF">
+                        <imageReference key="image" image="list.bullet.clipboard" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="goG-Xc-zvS">
+                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qML-og-iwK" kind="relationship" relationship="rootViewController" id="f7B-8f-eN4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i0K-Ae-GeQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2716.9230769230767" y="823.93364928909944"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Zb2-zX-qCG">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="pwg-iz-z2s" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kev-9q-i1i">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="CYF-Mu-Z6M" kind="relationship" relationship="viewControllers" id="e07-KE-Jo1"/>
+                        <segue destination="rem-sJ-iFg" kind="relationship" relationship="viewControllers" id="jq0-xO-1Pv"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m2c-zc-Fr1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1024.6153846153845" y="845.26066350710892"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="K8K-qH-BZl"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="list.bullet.clipboard" catalog="system" width="103" height="128"/>
+        <image name="person" catalog="system" width="128" height="121"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

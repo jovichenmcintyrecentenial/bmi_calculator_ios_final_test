@@ -61,7 +61,6 @@ class ViewController: BMIBaseViewController {
     }
     
 
-    
     func isDataValid()->Bool{
         var error:String? = nil
         
@@ -127,7 +126,9 @@ class ViewController: BMIBaseViewController {
           
             savePersonalInfo()
             saveBMIRecord()
-            performSegue(withIdentifier: "tracker", sender: nil)
+            let tabBar = UIApplication.shared.keyWindow?.rootViewController as? UITabBarController
+            tabBar!.selectedIndex = 0
+
             
         }
     }
