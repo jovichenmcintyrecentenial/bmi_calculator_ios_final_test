@@ -475,10 +475,10 @@
             </objects>
             <point key="canvasLocation" x="1786" y="-6"/>
         </scene>
-        <!--View Controller-->
+        <!--Details View Controller-->
         <scene sceneID="yam-cl-pBi">
             <objects>
-                <viewController id="x2f-Oc-90Q" sceneMemberID="viewController">
+                <viewController id="x2f-Oc-90Q" customClass="BMIDetailsViewController" customModule="BMI_Calculator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="51v-Dj-NnN">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -493,7 +493,7 @@
                                             <segment title="Metric units"/>
                                         </segments>
                                         <connections>
-                                            <action selector="measurementSystemValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="RPK-bb-ttz"/>
+                                            <action selector="measurementSystemValueChanged:" destination="x2f-Oc-90Q" eventType="valueChanged" id="8b1-8e-zRT"/>
                                         </connections>
                                     </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Measurement system" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8R-yF-kF6">
@@ -514,6 +514,7 @@
                                                 <buttonConfiguration key="configuration" style="filled" title="Done" buttonSize="large"/>
                                                 <connections>
                                                     <action selector="doneAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ksT-N8-Hyn"/>
+                                                    <action selector="onDoneAction:" destination="x2f-Oc-90Q" eventType="touchUpInside" id="OOH-UY-iij"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -677,6 +678,15 @@
                             <constraint firstItem="4a5-Fu-jOs" firstAttribute="trailing" secondItem="9VM-a3-FeO" secondAttribute="trailing" id="ynj-DV-O3D"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bmiDescriptionLabel" destination="4UG-by-u7r" id="IDd-b1-fa1"/>
+                        <outlet property="bmiLabel" destination="Dux-oh-FOb" id="cee-cO-KFi"/>
+                        <outlet property="heightLabel" destination="RaN-31-eb8" id="EHz-Vx-f73"/>
+                        <outlet property="heightTextField" destination="8qE-tY-d2Q" id="lXa-lV-TQg"/>
+                        <outlet property="measurementSystemUISegment" destination="0nE-j7-klb" id="M3k-5n-f6F"/>
+                        <outlet property="weightTextField" destination="nt7-IS-wHk" id="pZS-5M-En3"/>
+                        <outlet property="wieghtlabel" destination="E8p-ij-QCe" id="Edz-AZ-crv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cg1-Om-Z2Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
