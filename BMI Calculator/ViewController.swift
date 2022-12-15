@@ -37,7 +37,6 @@ class ViewController: BMIBaseViewController {
     }
     
     func getUserData(){
-        personalInfo = PersonalInfo.getPersonalData()
         if(personalInfo != nil){
             displayUserInformation()
         }

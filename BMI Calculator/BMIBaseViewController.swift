@@ -24,7 +24,8 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        personalInfo = PersonalInfo.getPersonalData()
+
         heightTextField.delegate = self
         weightTextField.delegate = self
         
