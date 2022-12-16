@@ -1,3 +1,14 @@
+//  NAME:
+//  Jovi Chen-Mcintyre - 301125059
+//
+//  DESCRIPTION:
+//  BMI calculator
+//
+//  REVISION HISTORY:
+//  https://github.com/jovichenmcintyrecentenial/bmi_calculator_ios_final_test
+//
+//  DATE LAST MODIFIED:
+//  Decemeber 11, 2022
 //
 //  ViewController.swift
 //  BMI Calculator

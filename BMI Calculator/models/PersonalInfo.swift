@@ -1,3 +1,14 @@
+//  NAME:
+//  Jovi Chen-Mcintyre - 301125059
+//
+//  DESCRIPTION:
+//  BMI calculator
+//
+//  REVISION HISTORY:
+//  https://github.com/jovichenmcintyrecentenial/bmi_calculator_ios_final_test
+//
+//  DATE LAST MODIFIED:
+//  Decemeber 11, 2022
 //
 //  PersonalInfo.swift
 //  BMI Calculator
@@ -33,7 +44,7 @@ class PersonalInfo: Object {
             realm.add(self)
           }
         } catch {
-            print("errorerror")
+            
         }
      
      }
@@ -54,7 +65,7 @@ class PersonalInfo: Object {
          }
      }
     
-    //static function use to access data for list for todoTasks from realm database
+    //static function use to access a single PersonalInfo
     static func getPersonalData()->PersonalInfo?{
         let realm = try! Realm()
         let personalInfObjects = realm.objects(PersonalInfo.self)
