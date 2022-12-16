@@ -54,6 +54,7 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
                 height = personalInfo?.height
                 heightTextField.text = "\(height!)"
                 bmiLabel.text = ""
+                measurementSystemUISegment.selectedSegmentIndex = personalInfo!.measurementSystem!
                 bmiDescriptionLabel.text = ""
             }
             //when page is using use for personal information, prefil data with personalInfo data from the releam database
@@ -76,6 +77,7 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
                 bmiDescriptionLabel.text = BMI.getBMIDescription(bmi: bmiRecordToUpdate!.bmi!)
 
             }
+            updateUISegmentMeasurementUnits()
         }
     }
     
@@ -104,12 +106,7 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
         isToggle = false
     }
     
-    //function use to update UI when toggle is pressed and clear some data
-    func updateDisplay(){
-
-        bmiRecord = nil
-        bmiLabel.text = ""
-        bmiDescriptionLabel.text = ""
+    func updateUISegmentMeasurementUnits(){
         if(measurementSystemUISegment.selectedSegmentIndex == 1){
             heightLabel.text = "Height (meters)"
             wieghtlabel.text = "Weight (kilograms)"
@@ -118,6 +115,15 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
             heightLabel.text = "Height (inches)"
             wieghtlabel.text = "Weight (pounds)"
         }
+    }
+    
+    //function use to update UI when toggle is pressed and clear some data
+    func updateDisplay(){
+
+        bmiRecord = nil
+        bmiLabel.text = ""
+        bmiDescriptionLabel.text = ""
+        updateUISegmentMeasurementUnits()
     }
     
 
