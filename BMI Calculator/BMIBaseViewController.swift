@@ -21,7 +21,7 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var bmiDescriptionLabel: UILabel!
     @IBOutlet weak var weightTextField: UITextField!
     @IBOutlet weak var heightTextField: UITextField!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         personalInfo = PersonalInfo.getPersonalData()
@@ -30,8 +30,8 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
         weightTextField.delegate = self
         
         if(personalInfo != nil){
-            lastHeightValue = personalInfo?.height
-            lastWeightValue = personalInfo?.weight
+            height = personalInfo?.height
+            weight = personalInfo?.weight
 
         }
     }
@@ -41,11 +41,9 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
         if(!isToggle){
             if(textField.tag == 1){
                 height = Double(textField.text!) ?? nil
-                lastHeightValue = height
             }
             if(textField.tag == 2){
                 weight = Double(textField.text!) ?? nil
-                lastWeightValue = weight
             }
             calculateBMI()
         }
@@ -82,8 +80,7 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    var lastWeightValue:Double? = nil
-    var lastHeightValue:Double? = nil
+
 
     func convertMeasurements(){
         var tempWeight:Double? = 0
@@ -91,28 +88,28 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
 
         //from imperical -> metric
         if(measurementSystemUISegment.selectedSegmentIndex == 0){
-            if(lastWeightValue != nil){
-                tempWeight = weight!*2.2
-                lastWeightValue = tempWeight
+            if(weight != nil){
+                tempWeight = weight!*2.20462
+                weight = tempWeight
                 weightTextField.text = doubleToString(tempWeight)
             }
-            if(lastHeightValue != nil){
+            if(height != nil){
                 tempHeight = height!/0.0254
-                lastHeightValue = tempHeight
+                height = tempHeight
                 heightTextField.text = doubleToString(tempHeight)
             }
         }
         //from metric -> imperical
         else{
-            if(lastWeightValue != nil){
-                tempWeight = lastWeightValue!/2.2
-                lastWeightValue = tempWeight
+            if(weight != nil){
+                tempWeight = weight!/2.20462
+                weight = tempWeight
                 weightTextField.text = doubleToString(tempWeight)
 
             }
-            if(lastHeightValue != nil){
-                tempHeight = lastHeightValue!*0.0254
-                lastHeightValue = tempHeight
+            if(height != nil){
+                tempHeight = height!*0.0254
+                height = tempHeight
                 heightTextField.text = doubleToString(tempHeight)
             }
 
@@ -120,14 +117,14 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
     }
     
 
-    func doubleToString(_ value:Double?,dp:Int = 2)->String{
+    func doubleToString(_ value:Double?,dp:Int = 4)->String{
         if let val = value {
             var removedTrailingZeros = String(format: "%g", val)
-//            var split = removedTrailingZeros.split(separator: ".")
-//            if(split.count > 1 && split[1].count > dp){
-//                var doubleValue = Double(removedTrailingZeros)
-//                return String(format: ("%."+dp.description+"f"), doubleValue!)
-//            }
+            var split = removedTrailingZeros.split(separator: ".")
+            if(split.count > 1 && split[1].count > dp){
+                var doubleValue = Double(removedTrailingZeros)
+                return String(format: ("%."+dp.description+"f"), doubleValue!)
+            }
             return removedTrailingZeros
         }
         return ""
