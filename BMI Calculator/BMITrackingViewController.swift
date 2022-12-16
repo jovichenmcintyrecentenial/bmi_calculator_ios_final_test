@@ -31,11 +31,11 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
         let dateformat = DateFormatter()
         dateformat.dateFormat = "MMMM dd, YYYY"
         cell.dateLabel.text = dateformat.string(from: bmiRecord.date!)
-        cell.bmiDescriptionLabel.text = BMI.getBMIDescription(bmi: bmiRecord.bmi)
+        cell.bmiDescriptionLabel.text = BMI.getBMIDescription(bmi: bmiRecord.bmi!)
         let unitOfmeasuement = bmiRecord.measurementSystem==1 ? "kg" : "lb"
         cell.heightWeightLabel.text = "Weight: \(bmiRecord.weight.toAString()) \(unitOfmeasuement)"
 
-        cell.bmiLabel.text = "\(String(format: "%.1f", bmiRecord.bmi)) BMI"
+        cell.bmiLabel.text = "\(String(format: "%.1f", bmiRecord.bmi!)) BMI"
 
         return cell
     }
@@ -71,7 +71,10 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
             destinationViewController.pageState = PageState.new
         }
         if segue.identifier == "updateBMI" {
-            destinationViewController.pageState = PageState.update
+            if let index  = sender {
+                destinationViewController.bmiRecordToUpdate = bmiRecords![index as! Int]
+                destinationViewController.pageState = PageState.update
+            }
         }
         
         //set self as delegate so the modal can trigger the isDismissed function
@@ -80,15 +83,9 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "updateBMI", sender: indexPath.row)
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
 
 }

@@ -468,6 +468,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="mkV-Al-Jcp" id="Q2E-aQ-cHV"/>
+                        <segue destination="x2f-Oc-90Q" kind="presentation" identifier="updateBMI" id="RB4-rX-Kg3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4LF-UV-9B3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -683,6 +684,7 @@
                         <outlet property="heightLabel" destination="RaN-31-eb8" id="EHz-Vx-f73"/>
                         <outlet property="heightTextField" destination="8qE-tY-d2Q" id="lXa-lV-TQg"/>
                         <outlet property="measurementSystemUISegment" destination="0nE-j7-klb" id="M3k-5n-f6F"/>
+                        <outlet property="pageTitle" destination="3O1-YV-KnU" id="tw2-gN-ghV"/>
                         <outlet property="weightTextField" destination="nt7-IS-wHk" id="pZS-5M-En3"/>
                         <outlet property="wieghtlabel" destination="E8p-ij-QCe" id="Edz-AZ-crv"/>
                     </connections>
@@ -764,6 +766,9 @@
             <point key="canvasLocation" x="1024.6153846153845" y="845.26066350710892"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="RB4-rX-Kg3"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="list.bullet.clipboard" catalog="system" width="103" height="128"/>
         <image name="person" catalog="system" width="128" height="121"/>

@@ -13,7 +13,8 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
     var personalInfo:PersonalInfo?
     var height:Double?
     var weight:Double?
-    var bmiRecord:BMIRecord? = nil
+    var bmiRecordToUpdate:BMIRecord?
+    var bmiRecord:BMIRecord?
     var isToggle = false
     var pageState:PageState = PageState.personalInfo
     @IBOutlet weak var wieghtlabel: UILabel!
@@ -43,6 +44,17 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
                 height = personalInfo?.height
                 heightTextField.text = "\(height!)"
                 weightTextField.text = "\(weight!)"
+
+            }
+            else if(pageState == .update){
+                
+                weight = bmiRecordToUpdate?.weight
+                height = bmiRecordToUpdate?.height
+                heightTextField.text = "\(height!)"
+                weightTextField.text = "\(weight!)"
+                bmiLabel.text = "\(bmiRecordToUpdate!.bmi.toAString(dp:1)) BMI"
+                measurementSystemUISegment.selectedSegmentIndex = bmiRecordToUpdate!.measurementSystem!
+                bmiDescriptionLabel.text = BMI.getBMIDescription(bmi: bmiRecordToUpdate!.bmi!)
 
             }
         }
