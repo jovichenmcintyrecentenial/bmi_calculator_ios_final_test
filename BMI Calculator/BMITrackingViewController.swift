@@ -27,6 +27,8 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BMIHistoryViewCell
+        cell.selectionStyle = .none
+
         let bmiRecord:BMIRecord = bmiRecords![indexPath.row]
         let dateformat = DateFormatter()
         dateformat.dateFormat = "MMMM dd, YYYY"
@@ -55,10 +57,10 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
+        tableView.addGestureRecognizer(longPress)
         
-        let tabBar = UIApplication.shared.keyWindow?.rootViewController as? UITabBarController
-        tabBar!.selectedIndex = 1
-        // Do any additional setup after loading the view.
+        (UIApplication.shared.keyWindow?.rootViewController as! UITabBarController).selectedIndex = 1
     }
     // row height
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -85,7 +87,49 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "updateBMI", sender: indexPath.row)
+    }
+    
+    //function for on long press hander
+    @objc private func handleLongPress(sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            let touchPoint = sender.location(in: tableView)
+            if let indexPath = tableView.indexPathForRow(at: touchPoint) {
+                //get current task that was long pressed
+                let bmiRecord = bmiRecords![indexPath.row]
+                //create an alert to confirm if user wants to delete task
+                let alert = UIAlertController(title: "Delete BMI Record", message: "Are you sure you want to delete this record?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+                    //delete data from realm
+                    bmiRecord.delete()
+                    //reload table view
+                    self.tableView.reloadData()
+                  
+                }))
 
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let edit: UIContextualAction  = UIContextualAction(style: .normal, title: "Edit") {
+            (action, sourceView, completionHandler) in
+            //trigger edit segue
+            self.performSegue(withIdentifier: "updateBMI", sender: indexPath.row)
+
+            completionHandler(true)
+            
+        }
+
+        //set edit action
+        let swipeConfiguration = UISwipeActionsConfiguration(actions: [ edit])
+        //on full swipe trigger the first action
+        swipeConfiguration.performsFirstActionWithFullSwipe = true
+        
+               
+        return swipeConfiguration
+        
     }
 
 }
