@@ -11,7 +11,7 @@ import Foundation
 class BMIRecord: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var height: Double = 0
-    @Persisted var weight: Double = 0
+    @Persisted var weight: Double?
     @Persisted var bmi: Double = 0
     @Persisted var date: Date?
     @Persisted var measurementSystem: Int?

@@ -100,41 +100,30 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
         if(measurementSystemUISegment.selectedSegmentIndex == 0){
             if(weight != nil){
                 weight = weight!*2.20462
-                weightTextField.text = doubleToString(weight)
+                weightTextField.text = weight.toAString()
             }
             if(height != nil){
                 height = height!/0.0254
-                heightTextField.text = doubleToString(height)
+                heightTextField.text = height.toAString()
             }
         }
         //from metric -> imperical
         else{
             if(weight != nil){
                 weight = weight!/2.20462
-                weightTextField.text = doubleToString(weight)
+                weightTextField.text = weight.toAString()
 
             }
             if(height != nil){
                 height = height!*0.0254
-                heightTextField.text = doubleToString(height)
+                heightTextField.text = height.toAString()
             }
 
         }
     }
     
 
-    func doubleToString(_ value:Double?,dp:Int = 4)->String{
-        if let val = value {
-            let removedTrailingZeros = String(format: "%g", val)
-            var split = removedTrailingZeros.split(separator: ".")
-            if(split.count > 1 && split[1].count > dp){
-                var doubleValue = Double(removedTrailingZeros)
-                return String(format: ("%."+dp.description+"f"), doubleValue!)
-            }
-            return removedTrailingZeros
-        }
-        return ""
-    }
+
     
     func calculateBMI(){
         if(height != nil && weight != nil) {
@@ -168,5 +157,21 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
            return "Please enter a number for your weight"
         }
         return nil
+    }
+}
+
+
+extension Double? {
+    func toAString(dp:Int = 4)->String{
+        if let val = self {
+            let removedTrailingZeros = String(format: "%g", val)
+            var split = removedTrailingZeros.split(separator: ".")
+            if(split.count > 1 && split[1].count > dp){
+                var doubleValue = Double(removedTrailingZeros)
+                return String(format: ("%."+dp.description+"f"), doubleValue!)
+            }
+            return removedTrailingZeros
+        }
+        return ""
     }
 }

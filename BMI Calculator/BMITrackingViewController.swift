@@ -33,7 +33,7 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
         cell.dateLabel.text = dateformat.string(from: bmiRecord.date!)
         cell.bmiDescriptionLabel.text = BMI.getBMIDescription(bmi: bmiRecord.bmi)
         let unitOfmeasuement = bmiRecord.measurementSystem==1 ? "kg" : "lb"
-        cell.heightWeightLabel.text = "Weight: \(bmiRecord.weight) \(unitOfmeasuement)"
+        cell.heightWeightLabel.text = "Weight: \(bmiRecord.weight.toAString()) \(unitOfmeasuement)"
 
         cell.bmiLabel.text = "\(String(format: "%.1f", bmiRecord.bmi)) BMI"
 
