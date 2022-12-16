@@ -83,34 +83,28 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
 
 
     func convertMeasurements(){
-        var tempWeight:Double? = 0
-        var tempHeight:Double? = 0
 
         //from imperical -> metric
         if(measurementSystemUISegment.selectedSegmentIndex == 0){
             if(weight != nil){
-                tempWeight = weight!*2.20462
-                weight = tempWeight
-                weightTextField.text = doubleToString(tempWeight)
+                weight = weight!*2.20462
+                weightTextField.text = doubleToString(weight)
             }
             if(height != nil){
-                tempHeight = height!/0.0254
-                height = tempHeight
-                heightTextField.text = doubleToString(tempHeight)
+                height = height!/0.0254
+                heightTextField.text = doubleToString(height)
             }
         }
         //from metric -> imperical
         else{
             if(weight != nil){
-                tempWeight = weight!/2.20462
-                weight = tempWeight
-                weightTextField.text = doubleToString(tempWeight)
+                weight = weight!/2.20462
+                weightTextField.text = doubleToString(weight)
 
             }
             if(height != nil){
-                tempHeight = height!*0.0254
-                height = tempHeight
-                heightTextField.text = doubleToString(tempHeight)
+                height = height!*0.0254
+                heightTextField.text = doubleToString(height)
             }
 
         }
@@ -119,7 +113,7 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
 
     func doubleToString(_ value:Double?,dp:Int = 4)->String{
         if let val = value {
-            var removedTrailingZeros = String(format: "%g", val)
+            let removedTrailingZeros = String(format: "%g", val)
             var split = removedTrailingZeros.split(separator: ".")
             if(split.count > 1 && split[1].count > dp){
                 var doubleValue = Double(removedTrailingZeros)
