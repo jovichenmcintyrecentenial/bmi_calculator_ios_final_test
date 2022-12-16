@@ -14,6 +14,7 @@ public protocol DimissedDelegate:NSObjectProtocol {
 }
 class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,DimissedDelegate {
     
+    //on modal dismiss load data
     func onDismissed(_ sender: Any?) {
         loadData()
     }
@@ -25,6 +26,7 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
         return bmiRecords?.count ?? 0
     }
     
+    //function to render cell for each bmi record
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BMIHistoryViewCell
         cell.selectionStyle = .none
@@ -47,9 +49,11 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
         loadData()
     }
     
+    //pull data from releam and reload table data
     func loadData(){
         bmiRecords = BMIRecord.getRecords().sorted(byKeyPath: "date", ascending: false)
     
+        //if there is no record left on reload navigate to personal details tab
         if(bmiRecords?.count == 0){
             (UIApplication.shared.keyWindow?.rootViewController as! UITabBarController).selectedIndex = 1
         }
@@ -60,9 +64,11 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+        //add long press for deleting a record
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
         tableView.addGestureRecognizer(longPress)
         
+    
         (UIApplication.shared.keyWindow?.rootViewController as! UITabBarController).selectedIndex = 1
     }
     // row height
@@ -72,11 +78,13 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationViewController = segue.destination as! BMIDetailsViewController
+        //base on segue identifier set state of BMIDetailsViewController
         if segue.identifier == "newBMI" {
             destinationViewController.pageState = PageState.new
         }
         if segue.identifier == "updateBMI" {
             if let index  = sender {
+                //pass current bmi record to destinationViewController
                 destinationViewController.bmiRecordToUpdate = bmiRecords![index as! Int]
                 destinationViewController.pageState = PageState.update
             }
@@ -89,10 +97,11 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //on tap check trigger update segue and pass index of row item
         performSegue(withIdentifier: "updateBMI", sender: indexPath.row)
     }
     
-    //function for on long press hander
+    //function for on long press hander to delete a record
     @objc private func handleLongPress(sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
             let touchPoint = sender.location(in: tableView)
@@ -114,6 +123,7 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
         }
     }
     
+    //function to swipe to edit data
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let edit: UIContextualAction  = UIContextualAction(style: .normal, title: "Edit") {
             (action, sourceView, completionHandler) in

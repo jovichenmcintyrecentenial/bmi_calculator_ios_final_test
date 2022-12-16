@@ -36,12 +36,14 @@ class ViewController: BMIBaseViewController {
         
     }
     
+    //check if user nil if not update the ui with data
     func getUserData(){
         if(personalInfo != nil){
             displayUserInformation()
         }
     }
     
+    //display store data from realm database
     func displayUserInformation(){
         nameTextField.text = personalInfo!.name!
         ageTextField.text = "\(personalInfo!.age!)"
@@ -61,6 +63,7 @@ class ViewController: BMIBaseViewController {
     }
     
 
+    //valid input fields
     func isDataValid()->Bool{
         var error:String? = nil
         
@@ -89,7 +92,9 @@ class ViewController: BMIBaseViewController {
         return true
     }
     
+    //save personal infomation handles for new or existing user
     func savePersonalInfo(){
+        //if this user is new create realm object and save it
         if(personalInfo == nil){
             let personalInfo:PersonalInfo? = PersonalInfo()
             personalInfo?.name = nameTextField.text!
@@ -101,6 +106,7 @@ class ViewController: BMIBaseViewController {
             personalInfo?.create()
             
         }
+        //else if user is not new and exist in database already update the data
         else{
             let realm = try! Realm()
             try! realm.write {
@@ -114,6 +120,7 @@ class ViewController: BMIBaseViewController {
         }
     }
     
+    //save bmi record in realm database
     func saveBMIRecord(){
         if(bmiRecord != nil){
             bmiRecord?.create()
@@ -122,16 +129,16 @@ class ViewController: BMIBaseViewController {
     }
    
     @IBAction func doneAction(_ sender: Any) {
+        //if data valid then save personal information and the BMI record
         if(isDataValid()){
           
             savePersonalInfo()
             saveBMIRecord()
+            //switch the bmi tracking screen
             (UIApplication.shared.keyWindow?.rootViewController as! UITabBarController).selectedIndex = 0
 
             
         }
-    }
-    @IBAction func resetAction(_ sender: Any) {
     }
     
 }

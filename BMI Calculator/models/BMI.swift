@@ -8,6 +8,7 @@
 import Foundation
 
 class BMI {
+    //function to calculate BMI
     static func calculate(height:Double,weight:Double,measurementSystem:Int)->Double{
         
 

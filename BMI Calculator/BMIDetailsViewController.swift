@@ -41,11 +41,14 @@ class BMIDetailsViewController: BMIBaseViewController {
     }
     
     
+    //function use to either create or update bmi record
     @IBAction func onDoneAction(_ sender: Any) {
         if(isDataValid() && bmiRecord != nil  ){
+            //take bmiRecord and acreate a new record is page state is new
             if(pageState == .new){
                 bmiRecord?.create()
             }
+            //update passed bmiRecord if page state is update and also update date
             else{
                 let realm = try! Realm()
                 try! realm.write {

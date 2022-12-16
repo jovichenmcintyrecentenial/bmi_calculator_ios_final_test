@@ -7,12 +7,15 @@
 
 import UIKit
 
+//different state the page can be in
 enum PageState{case new, update, personalInfo}
+//base uiviewcontroller use on BMIDetails page and Personal Information screen
 class BMIBaseViewController: UIViewController, UITextFieldDelegate {
     
     var personalInfo:PersonalInfo?
     var height:Double?
     var weight:Double?
+    //this obj will not be nil if you are updating a record
     var bmiRecordToUpdate:BMIRecord?
     var bmiRecord:BMIRecord?
     var isToggle = false
@@ -27,18 +30,22 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //get personal information from realm database
         personalInfo = PersonalInfo.getPersonalData()
 
+        //set text field delegate to watch text change
         heightTextField.delegate = self
         weightTextField.delegate = self
         
         if(personalInfo != nil){
+            //when page is in new state take personal information height and prefil UI
             if(pageState == .new){
                 height = personalInfo?.height
                 heightTextField.text = "\(height!)"
                 bmiLabel.text = ""
                 bmiDescriptionLabel.text = ""
             }
+            //when page is using use for personal information, prefil data with personalInfo data from the releam database
             else if(pageState == .personalInfo){
                 weight = personalInfo?.weight
                 height = personalInfo?.height
@@ -46,6 +53,7 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
                 weightTextField.text = "\(weight!)"
 
             }
+            //when this is in an update page state it should take the BMI record pass to this screen and prefill UI with that information
             else if(pageState == .update){
                 
                 weight = bmiRecordToUpdate?.weight
@@ -61,6 +69,7 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    //use to update varible for height and weight as you type to calculate bmi in realtime
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if(!isToggle){
             if(textField.tag == 1){
@@ -74,7 +83,9 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    //when toggle measurement system segment then convert bases to respective units of measurement
     @IBAction func measurementSystemValueChanged(_ sender: UISegmentedControl) {
+        //toggle flag use to prevent text change listener from registering toggles as typing in the textfield delegate fuction
         isToggle = true
         updateDisplay()
         convertMeasurements()
@@ -82,12 +93,9 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
         isToggle = false
     }
     
-    
+    //function use to update UI when toggle is pressed and clear some data
     func updateDisplay(){
-//        heightTextField.text = ""
-//        weightTextField.text = ""
-//        weight = nil
-//        height = nil
+
         bmiRecord = nil
         bmiLabel.text = ""
         bmiDescriptionLabel.text = ""
@@ -103,6 +111,8 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
     
 
 
+    //convert imperical -> metric or from metric -> imperical
+    //based on the current value and UISegment index
     func convertMeasurements(){
 
         //from imperical -> metric
@@ -131,9 +141,7 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-
-
-    
+    //function to calculate BMI and update bmiRecord obj and display
     func calculateBMI(){
         if(height != nil && weight != nil) {
             let bmi = BMI.calculate(height: height!, weight: weight!, measurementSystem: measurementSystemUISegment.selectedSegmentIndex)
@@ -152,6 +160,7 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    //valid measument information in input fields
     func validateMeasurements()->String?{
         if(heightTextField.text!.trimmingCharacters(in: .whitespaces).isEmpty){
            return "Please enter a height"
@@ -171,10 +180,12 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
 
 
 extension Double? {
+    //function to convert a double to a string with some decimal point input and it also remove trailing zeros
     func toAString(dp:Int = 4)->String{
         if let val = self {
             let removedTrailingZeros = String(format: "%g", val)
             var split = removedTrailingZeros.split(separator: ".")
+            //if decmial points pass the set dp then tuncate the string
             if(split.count > 1 && split[1].count > dp){
                 var doubleValue = Double(removedTrailingZeros)
                 return String(format: ("%."+dp.description+"f"), doubleValue!)
