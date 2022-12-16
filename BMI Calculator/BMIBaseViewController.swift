@@ -7,6 +7,7 @@
 
 import UIKit
 
+enum PageState{case new, update, personalInfo}
 class BMIBaseViewController: UIViewController, UITextFieldDelegate {
     
     var personalInfo:PersonalInfo?
@@ -14,6 +15,7 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
     var weight:Double?
     var bmiRecord:BMIRecord? = nil
     var isToggle = false
+    var pageState:PageState = PageState.personalInfo
     @IBOutlet weak var wieghtlabel: UILabel!
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var measurementSystemUISegment: UISegmentedControl!
@@ -30,9 +32,19 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
         weightTextField.delegate = self
         
         if(personalInfo != nil){
-            height = personalInfo?.height
-            weight = personalInfo?.weight
+            if(pageState == .new){
+                height = personalInfo?.height
+                heightTextField.text = "\(height!)"
+                bmiLabel.text = ""
+                bmiDescriptionLabel.text = ""
+            }
+            else if(pageState == .personalInfo){
+                weight = personalInfo?.weight
+                height = personalInfo?.height
+                heightTextField.text = "\(height!)"
+                weightTextField.text = "\(weight!)"
 
+            }
         }
     }
     

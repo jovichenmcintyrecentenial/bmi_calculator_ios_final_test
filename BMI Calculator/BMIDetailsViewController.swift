@@ -9,6 +9,7 @@ import UIKit
 
 class BMIDetailsViewController: BMIBaseViewController {
 
+    var delegate:DimissedDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
 

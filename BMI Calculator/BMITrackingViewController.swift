@@ -8,7 +8,16 @@
 import UIKit
 import RealmSwift
 
-class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+//Delegate method to use to trigger when the task details view is dismissed so this view know when to trigger a tableview update
+public protocol DimissedDelegate:NSObjectProtocol {
+    func onDismissed(_ sender:Any?)
+}
+class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,DimissedDelegate {
+    
+    func onDismissed(_ sender: Any?) {
+        loadData()
+    }
+    
     
     var bmiRecords:Results<BMIRecord>? = nil
     
@@ -54,6 +63,21 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
     // row height
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 81
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationViewController = segue.destination as! BMIDetailsViewController
+        if segue.identifier == "newBMI" {
+            destinationViewController.pageState = PageState.new
+        }
+        if segue.identifier == "updateBMI" {
+            destinationViewController.pageState = PageState.update
+        }
+        
+        //set self as delegate so the modal can trigger the isDismissed function
+        destinationViewController.delegate = self
+        
+        
     }
     
 

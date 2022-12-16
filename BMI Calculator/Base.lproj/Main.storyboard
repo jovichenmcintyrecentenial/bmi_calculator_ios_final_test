@@ -462,13 +462,12 @@
                         <barButtonItem key="rightBarButtonItem" title="Add New" id="Wd1-Z4-iAH">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="x2f-Oc-90Q" kind="presentation" id="gxp-kF-fya"/>
+                                <segue destination="x2f-Oc-90Q" kind="presentation" identifier="newBMI" id="0uF-wi-QSF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="mkV-Al-Jcp" id="Q2E-aQ-cHV"/>
-                        <segue destination="x2f-Oc-90Q" kind="presentation" id="K8K-qH-BZl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4LF-UV-9B3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -690,7 +689,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cg1-Om-Z2Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2575" y="-6"/>
+            <point key="canvasLocation" x="4342" y="824"/>
         </scene>
         <!--Personal Details-->
         <scene sceneID="vj6-v8-rhG">
@@ -765,9 +764,6 @@
             <point key="canvasLocation" x="1024.6153846153845" y="845.26066350710892"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="K8K-qH-BZl"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="list.bullet.clipboard" catalog="system" width="103" height="128"/>
         <image name="person" catalog="system" width="128" height="121"/>
