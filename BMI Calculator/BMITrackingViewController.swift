@@ -50,6 +50,9 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
     func loadData(){
         bmiRecords = BMIRecord.getRecords().sorted(byKeyPath: "date", ascending: false)
     
+        if(bmiRecords?.count == 0){
+            (UIApplication.shared.keyWindow?.rootViewController as! UITabBarController).selectedIndex = 1
+        }
         tableView.reloadData()
     }
     
@@ -99,12 +102,11 @@ class BMITrackingViewController: UIViewController,UITableViewDelegate, UITableVi
                 //create an alert to confirm if user wants to delete task
                 let alert = UIAlertController(title: "Delete BMI Record", message: "Are you sure you want to delete this record?", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
-                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] action in
                     //delete data from realm
                     bmiRecord.delete()
                     //reload table view
-                    self.tableView.reloadData()
-                  
+                    loadData()
                 }))
 
                 self.present(alert, animated: true, completion: nil)

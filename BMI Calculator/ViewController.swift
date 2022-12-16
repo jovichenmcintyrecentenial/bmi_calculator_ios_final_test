@@ -126,8 +126,7 @@ class ViewController: BMIBaseViewController {
           
             savePersonalInfo()
             saveBMIRecord()
-            let tabBar = UIApplication.shared.keyWindow?.rootViewController as? UITabBarController
-            tabBar!.selectedIndex = 0
+            (UIApplication.shared.keyWindow?.rootViewController as! UITabBarController).selectedIndex = 0
 
             
         }

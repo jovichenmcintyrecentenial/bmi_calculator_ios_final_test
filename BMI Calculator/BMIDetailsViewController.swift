@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import NotificationBannerSwift
 
 class BMIDetailsViewController: BMIBaseViewController {
 
@@ -22,8 +23,26 @@ class BMIDetailsViewController: BMIBaseViewController {
         // Do any additional setup after loading the view.
     }
     
+    func isDataValid()->Bool{
+        var error:String? = nil
+        
+
+        error = validateMeasurements()
+        
+        
+        //display banner showing user error for required field
+        if(error != nil){
+            let banner = NotificationBanner(title: title, subtitle: error!, style: .danger)
+            banner.show()
+            return false
+        }
+        
+        return true
+    }
+    
+    
     @IBAction func onDoneAction(_ sender: Any) {
-        if(bmiRecord != nil && validateMeasurements() == nil){
+        if(isDataValid() && bmiRecord != nil  ){
             if(pageState == .new){
                 bmiRecord?.create()
             }

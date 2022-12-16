@@ -75,14 +75,11 @@ class BMIBaseViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func measurementSystemValueChanged(_ sender: UISegmentedControl) {
-        var x = sender.selectedSegmentIndex
         isToggle = true
         updateDisplay()
         convertMeasurements()
         calculateBMI()
         isToggle = false
-
-        
     }
     
     
